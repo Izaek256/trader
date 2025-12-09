@@ -1,9 +1,9 @@
 {
   "mt5": {
-    "login": null,
-    "password": null,
-    "server": null,
-    "path": null,
+    "login": 99866144,
+    "password": "5sKb@iUu",
+    "server": "MetaQuotes-Demo",
+    "path": "C:\\Program Files\\MetaTrader 5",
     "timeout": 60000
   },
   "trading": {
