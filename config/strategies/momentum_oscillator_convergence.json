@@ -14,12 +14,12 @@
   "williams_oversold": -80,
   "williams_overbought": -20,
   "trend_ema_period": 50,
-  "min_oscillators_agree": 3,
+  "min_oscillators_agree": 2,
   "atr_period": 14,
   "atr_sl_multiplier": 1.5,
-  "atr_volatility_filter": 0.8,
+  "atr_volatility_filter": 0.6,
   "volume_period": 20,
-  "volume_threshold": 1.2,
+  "volume_threshold": 1.0,
   "risk_reward_ratio": 2.5
 }
 

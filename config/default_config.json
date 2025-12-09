@@ -12,8 +12,8 @@
     "magic_number": 123456
   },
   "strategy": {
-    "name": "ma_crossover",
-    "config_file": "config/strategies/ma_crossover.json"
+    "name": "momentum_oscillator_convergence",
+    "config_file": "config/strategies/momentum_oscillator_convergence.json"
   },
   "risk": {
     "position_sizing": {

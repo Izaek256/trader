@@ -165,13 +165,25 @@ class BacktestEngine:
             symbol, order_type, entry_price, position_size, bar_data
         )
         
-        # Calculate stop loss and take profit (simplified: 1% SL, 2% TP)
-        if order_type == 'BUY':
-            sl = fill_price * 0.99
-            tp = fill_price * 1.02
+        # Use SL/TP from strategy metadata if available, otherwise use defaults
+        metadata = signal.metadata or {}
+        if 'sl_price' in metadata and metadata['sl_price'] > 0:
+            sl = metadata['sl_price']
         else:
-            sl = fill_price * 1.01
-            tp = fill_price * 0.98
+            # Default: 1% SL
+            if order_type == 'BUY':
+                sl = fill_price * 0.99
+            else:
+                sl = fill_price * 1.01
+        
+        if 'tp_price' in metadata and metadata['tp_price'] > 0:
+            tp = metadata['tp_price']
+        else:
+            # Default: 2% TP
+            if order_type == 'BUY':
+                tp = fill_price * 1.02
+            else:
+                tp = fill_price * 0.98
         
         # Record position
         self.open_positions[symbol] = {

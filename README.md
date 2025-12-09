@@ -20,18 +20,20 @@ A comprehensive Python-based automated trading bot for MetaTrader 5 with modular
    ```bash
    # Option 1: Try installing from PyPI (may not always work)
    pip install MetaTrader5
-   
+
    # Option 2: If PyPI fails, download the wheel file from MetaQuotes
    # Visit: https://www.mql5.com/en/docs/integration/python_metatrader5
    # Or install directly from the MT5 terminal directory:
    pip install <path_to_mt5_terminal>/MQL5/Scripts/include/python/
    ```
 4. Install other dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
 
 **Note**: If you encounter "Could not find a version that satisfies the requirement MetaTrader5", try:
+
 - Ensure you're using Python 3.8-3.11 (not 3.12+)
 - Download the MetaTrader5 wheel file directly from MetaQuotes
 - Install MetaTrader 5 terminal first, then try installing the package again
@@ -41,6 +43,7 @@ pip install -r requirements.txt
 ## Configuration
 
 Edit `config/default_config.json` to set:
+
 - MT5 connection credentials
 - Strategy parameters
 - Risk management rules
@@ -55,7 +58,7 @@ Edit `config/default_config.json` to set:
 python main.py start --config config/default_config.json
 
 # Run backtest
-python main.py backtest --config config/default_config.json --start-date 2023-01-01 --end-date 2023-12-31
+python main.py backtest --config config/default_config.json --start-date 2025-08-01 --end-date 2025-12-01
 
 # Check status
 python main.py status
@@ -86,4 +89,3 @@ python main.py dashboard --port 8050
 ## License
 
 MIT
-

@@ -24,7 +24,15 @@ def set_bot_instance(bot: Any, perf_logger: Any):
 async def get_metrics() -> Dict[str, Any]:
     """Get current performance metrics"""
     if performance_logger is None:
-        raise HTTPException(status_code=503, detail="Bot not initialized")
+        return {
+            "total_trades": 0,
+            "win_rate": 0.0,
+            "roi": 0.0,
+            "total_profit": 0.0,
+            "max_drawdown": 0.0,
+            "current_equity": 0.0,
+            "message": "Bot not initialized"
+        }
     
     try:
         metrics = performance_logger.get_current_metrics()
@@ -38,7 +46,7 @@ async def get_metrics() -> Dict[str, Any]:
 async def get_trades(limit: int = 100) -> Dict[str, Any]:
     """Get recent trade history"""
     if performance_logger is None:
-        raise HTTPException(status_code=503, detail="Bot not initialized")
+        return {"trades": [], "count": 0, "message": "Bot not initialized"}
     
     try:
         file_logger = performance_logger.file_logger
@@ -53,7 +61,7 @@ async def get_trades(limit: int = 100) -> Dict[str, Any]:
 async def get_positions() -> Dict[str, Any]:
     """Get open positions"""
     if bot_instance is None or bot_instance.order_manager is None:
-        raise HTTPException(status_code=503, detail="Bot not initialized")
+        return {"positions": [], "count": 0, "message": "Bot not initialized"}
     
     try:
         positions = bot_instance.order_manager.get_positions()
@@ -82,7 +90,7 @@ async def get_positions() -> Dict[str, Any]:
 async def get_equity() -> Dict[str, Any]:
     """Get equity curve data"""
     if performance_logger is None:
-        raise HTTPException(status_code=503, detail="Bot not initialized")
+        return {"equity_curve": [], "message": "Bot not initialized"}
     
     try:
         file_logger = performance_logger.file_logger

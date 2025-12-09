@@ -2,6 +2,7 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.wsgi import WSGIMiddleware
 import logging
 
 from src.ui.dashboard.routes import router, set_bot_instance
@@ -32,9 +33,9 @@ def create_app(bot_instance=None, performance_logger=None):
     # Include API routes
     app.include_router(router)
     
-    # Create and mount Dash app
+    # Create and mount Dash app with WSGI middleware
     dash_app = create_dash_app()
-    app.mount("/dash", dash_app.server)
+    app.mount("/dash", WSGIMiddleware(dash_app.server))
     
     @app.get("/")
     async def root():

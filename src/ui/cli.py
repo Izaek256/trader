@@ -9,6 +9,14 @@ import logging
 
 from src.utils.config import ConfigLoader
 from src.strategy.ma_crossover import MACrossoverStrategy
+from src.strategy.mean_reversion_volatility import MeanReversionVolatilityStrategy
+from src.strategy.multi_timeframe_trend import MultiTimeframeTrendStrategy
+from src.strategy.breakout_volatility_expansion import BreakoutVolatilityExpansionStrategy
+from src.strategy.liquidity_sweep_smc import LiquiditySweepSMCStrategy
+from src.strategy.statistical_arbitrage import StatisticalArbitrageStrategy
+from src.strategy.vix_volatility_index import VIXVolatilityIndexStrategy
+from src.strategy.ml_entry_filter import MLEntryFilterStrategy
+from src.strategy.momentum_oscillator_convergence import MomentumOscillatorConvergenceStrategy
 from src.core.bot import TradingBot
 from src.backtest.engine import BacktestEngine
 
@@ -21,6 +29,26 @@ logger = logging.getLogger(__name__)
 
 # Global bot instance
 bot_instance: TradingBot = None
+
+
+def _create_strategy(strategy_name: str, strategy_config: dict):
+    """Create strategy instance based on name"""
+    strategy_map = {
+        'ma_crossover': MACrossoverStrategy,
+        'mean_reversion_volatility': MeanReversionVolatilityStrategy,
+        'multi_timeframe_trend': MultiTimeframeTrendStrategy,
+        'breakout_volatility_expansion': BreakoutVolatilityExpansionStrategy,
+        'liquidity_sweep_smc': LiquiditySweepSMCStrategy,
+        'statistical_arbitrage': StatisticalArbitrageStrategy,
+        'vix_volatility_index': VIXVolatilityIndexStrategy,
+        'ml_entry_filter': MLEntryFilterStrategy,
+        'momentum_oscillator_convergence': MomentumOscillatorConvergenceStrategy,
+    }
+    
+    strategy_class = strategy_map.get(strategy_name)
+    if strategy_class:
+        return strategy_class(strategy_config)
+    return None
 
 
 @click.group()
@@ -142,11 +170,13 @@ def backtest(config: str, start_date: str, end_date: str, symbol: str):
             strategy_config = {}
         
         # Create strategy
-        strategy_name = config_dict.get('strategy', {}).get('name', 'ma_crossover')
-        if strategy_name == 'ma_crossover':
-            strategy = MACrossoverStrategy(strategy_config)
-        else:
+        strategy_name = config_dict.get('strategy', {}).get('name', 'mean_reversion_volatility')
+        strategy = _create_strategy(strategy_name, strategy_config)
+        if strategy is None:
             click.echo(f"Unknown strategy: {strategy_name}", err=True)
+            click.echo("Available strategies: ma_crossover, mean_reversion_volatility, multi_timeframe_trend, "
+                       "breakout_volatility_expansion, liquidity_sweep_smc, statistical_arbitrage, "
+                       "vix_volatility_index, ml_entry_filter, momentum_oscillator_convergence")
             sys.exit(1)
         
         # Parse dates
