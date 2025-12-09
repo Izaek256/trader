@@ -14,12 +14,27 @@ A comprehensive Python-based automated trading bot for MetaTrader 5 with modular
 
 ## Installation
 
-1. Install Python 3.8 or higher
-2. Install MetaTrader 5 terminal
-3. Install dependencies:
+1. Install Python 3.8-3.11 (MetaTrader5 supports Python 3.8-3.11)
+2. Install MetaTrader 5 terminal from [MetaQuotes website](https://www.metatrader5.com/en/download)
+3. Install MetaTrader5 Python package:
+   ```bash
+   # Option 1: Try installing from PyPI (may not always work)
+   pip install MetaTrader5
+   
+   # Option 2: If PyPI fails, download the wheel file from MetaQuotes
+   # Visit: https://www.mql5.com/en/docs/integration/python_metatrader5
+   # Or install directly from the MT5 terminal directory:
+   pip install <path_to_mt5_terminal>/MQL5/Scripts/include/python/
+   ```
+4. Install other dependencies:
 ```bash
 pip install -r requirements.txt
 ```
+
+**Note**: If you encounter "Could not find a version that satisfies the requirement MetaTrader5", try:
+- Ensure you're using Python 3.8-3.11 (not 3.12+)
+- Download the MetaTrader5 wheel file directly from MetaQuotes
+- Install MetaTrader 5 terminal first, then try installing the package again
 
 4. Configure MT5 connection in `config/default_config.json` or use environment variables
 
