@@ -1,0 +1,25 @@
+{
+  "name": "Momentum Oscillator Convergence",
+  "rsi_period": 14,
+  "rsi_oversold": 30,
+  "rsi_overbought": 70,
+  "stoch_k_period": 14,
+  "stoch_d_period": 3,
+  "stoch_oversold": 20,
+  "stoch_overbought": 80,
+  "macd_fast": 12,
+  "macd_slow": 26,
+  "macd_signal": 9,
+  "williams_period": 14,
+  "williams_oversold": -80,
+  "williams_overbought": -20,
+  "trend_ema_period": 50,
+  "min_oscillators_agree": 3,
+  "atr_period": 14,
+  "atr_sl_multiplier": 1.5,
+  "atr_volatility_filter": 0.8,
+  "volume_period": 20,
+  "volume_threshold": 1.2,
+  "risk_reward_ratio": 2.5
+}
+

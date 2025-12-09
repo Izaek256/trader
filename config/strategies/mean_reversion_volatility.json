@@ -1,0 +1,20 @@
+{
+  "name": "Mean-Reversion Volatility Compression",
+  "bb_period": 20,
+  "bb_std": 2.0,
+  "bb_compression_threshold": 0.8,
+  "bb_expansion_threshold": 1.5,
+  "rsi_period": 14,
+  "rsi_oversold": 30,
+  "rsi_overbought": 70,
+  "atr_period": 14,
+  "atr_low_threshold": 0.9,
+  "atr_sl_buffer": 0.5,
+  "volume_period": 20,
+  "volume_threshold": 0.9,
+  "adx_period": 14,
+  "adx_max": 20.0,
+  "risk_reward_ratio": 1.5,
+  "preferred_session": "asian"
+}
+

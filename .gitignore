@@ -33,7 +33,6 @@ Thumbs.db
 *.sock
 *.txt
 *.csv
-*.json
 *.yaml
 *.yml
 *.html

@@ -33,16 +33,41 @@ class MT5Connector:
         path = mt5_config.get('path')
         timeout = mt5_config.get('timeout', 60000)
         
-        if path:
-            if not mt5.initialize(path=path):
-                logger.error(f"MT5 initialization failed: {mt5.last_error()}")
-                return False
-        else:
-            if not mt5.initialize():
-                logger.error(f"MT5 initialization failed: {mt5.last_error()}")
-                return False
+        # Handle null/None path from JSON
+        if path is None or path == 'null' or path == '':
+            path = None
         
-        logger.info("MT5 initialized successfully")
+        # Try to initialize with path if provided
+        if path:
+            # Check if path exists
+            import os
+            if os.path.exists(path):
+                if not mt5.initialize(path=path):
+                    error = mt5.last_error()
+                    logger.error(f"MT5 initialization failed with path '{path}': {error}")
+                    logger.info("Attempting to initialize without path (auto-detect)...")
+                    # Fall through to auto-detect
+                else:
+                    logger.info(f"MT5 initialized successfully from path: {path}")
+                    return True
+            else:
+                logger.warning(f"MT5 path does not exist: {path}")
+                logger.info("Attempting to initialize without path (auto-detect)...")
+        
+        # Try auto-detect (initialize without path)
+        if not mt5.initialize():
+            error = mt5.last_error()
+            logger.error(f"MT5 initialization failed (auto-detect): {error}")
+            logger.error("Please ensure MetaTrader 5 is installed and:")
+            logger.error("  1. Set the correct path in config file (mt5.path), OR")
+            logger.error("  2. Set MT5_PATH environment variable, OR")
+            logger.error("  3. Ensure MT5 is in default installation location")
+            logger.error("Common MT5 paths:")
+            logger.error("  - Windows: C:\\Program Files\\MetaTrader 5\\terminal64.exe")
+            logger.error("  - Windows (x86): C:\\Program Files (x86)\\MetaTrader 5\\terminal64.exe")
+            return False
+        
+        logger.info("MT5 initialized successfully (auto-detected)")
         return True
     
     def login(self) -> bool:

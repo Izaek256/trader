@@ -3,7 +3,7 @@
     "login": 99866144,
     "password": "5sKb@iUu",
     "server": "MetaQuotes-Demo",
-    "path": "C:\\Program Files\\MetaTrader 5",
+    "path": null,
     "timeout": 60000
   },
   "trading": {

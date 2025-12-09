@@ -1,0 +1,19 @@
+{
+  "name": "Breakout Volatility Expansion",
+  "consolidation_period": 20,
+  "consolidation_threshold": 0.005,
+  "atr_period": 14,
+  "atr_expansion_threshold": 1.2,
+  "atr_compression_threshold": 0.7,
+  "atr_compression_lookback": 10,
+  "bb_period": 20,
+  "bb_std": 2.0,
+  "bb_expansion_threshold": 1.2,
+  "bb_compression_threshold": 0.7,
+  "volume_period": 20,
+  "volume_breakout_threshold": 1.5,
+  "risk_reward_ratio": 2.0,
+  "atr_sl_multiplier": 1.5,
+  "breakout_confirmation_bars": 2
+}
+

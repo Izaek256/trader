@@ -1,0 +1,19 @@
+{
+  "name": "VIX Volatility Index",
+  "zscore_period": 60,
+  "zscore_entry": 2.0,
+  "zscore_exit": 0.5,
+  "zscore_stop": 3.0,
+  "rsi_period": 14,
+  "rsi_oversold": 25,
+  "rsi_overbought": 75,
+  "volume_period": 20,
+  "volume_spike_threshold": 1.5,
+  "mean_reversion_period": 100,
+  "mean_reversion_strength": 0.7,
+  "atr_period": 14,
+  "atr_sl_multiplier": 2.0,
+  "risk_reward_ratio": 2.0,
+  "avoid_expiration_days": 3
+}
+

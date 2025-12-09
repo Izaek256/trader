@@ -1,0 +1,18 @@
+{
+  "name": "Statistical Arbitrage",
+  "spread_period": 60,
+  "zscore_period": 20,
+  "zscore_entry": 2.0,
+  "zscore_exit": 0.5,
+  "zscore_stop": 3.0,
+  "pair_symbol": null,
+  "use_pair": false,
+  "ma_period": 50,
+  "spread_method": "ratio",
+  "check_cointegration": true,
+  "cointegration_lookback": 100,
+  "min_correlation": 0.7,
+  "risk_reward_ratio": 2.0,
+  "max_hold_bars": 50
+}
+

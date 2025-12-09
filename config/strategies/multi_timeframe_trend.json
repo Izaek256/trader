@@ -1,0 +1,24 @@
+{
+  "name": "Multi-Timeframe Trend Continuation",
+  "htf_multiplier": 4,
+  "ltf_periods": 50,
+  "fast_ema": 21,
+  "slow_ema": 50,
+  "adx_period": 14,
+  "adx_threshold": 25.0,
+  "adx_exit_threshold": 20.0,
+  "rsi_period": 14,
+  "rsi_oversold": 35,
+  "rsi_overbought": 65,
+  "rsi_recovery": 5,
+  "atr_period": 14,
+  "atr_sl_multiplier": 1.5,
+  "atr_volatility_filter": 0.8,
+  "volume_period": 20,
+  "volume_pullback_threshold": 0.8,
+  "volume_continuation_threshold": 1.2,
+  "risk_reward_ratio": 2.5,
+  "avoid_news_hours": true,
+  "news_buffer_minutes": 30
+}
+

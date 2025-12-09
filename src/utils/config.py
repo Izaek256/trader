@@ -4,7 +4,12 @@ import json
 import os
 from pathlib import Path
 from typing import Dict, Any, Optional
-import yaml
+
+try:
+    import yaml
+    HAS_YAML = True
+except ImportError:
+    HAS_YAML = False
 
 
 class ConfigLoader:
@@ -28,6 +33,8 @@ class ConfigLoader:
         
         with open(self.config_path, 'r') as f:
             if self.config_path.suffix.lower() in ['.yaml', '.yml']:
+                if not HAS_YAML:
+                    raise ImportError("YAML files require 'pyyaml' package. Install with: pip install pyyaml")
                 self.config = yaml.safe_load(f) or {}
             else:
                 self.config = json.load(f)
@@ -37,12 +44,51 @@ class ConfigLoader:
     
     def _load_env_overrides(self) -> None:
         """Override config values with environment variables"""
-        from dotenv import load_dotenv
-        load_dotenv()
+        import logging
+        logger = logging.getLogger(__name__)
+        
+        try:
+            from dotenv import load_dotenv
+            # Suppress warnings by using verbose=False and handling errors
+            import warnings
+            import logging as log_module
+            # Temporarily suppress dotenv warnings
+            dotenv_logger = log_module.getLogger('dotenv.main')
+            original_level = dotenv_logger.level
+            dotenv_logger.setLevel(log_module.ERROR)
+            
+            try:
+                # Try to load .env file, but don't fail if it doesn't exist or has issues
+                env_path = Path('.env')
+                if not env_path.exists():
+                    # Try loading from project root
+                    project_root = Path(__file__).parent.parent.parent
+                    env_path = project_root / '.env'
+                
+                if env_path.exists():
+                    # Check if file is in valid format (has = signs)
+                    try:
+                        with open(env_path, 'r') as f:
+                            content = f.read()
+                            # Only try to load if it looks like a valid .env file
+                            if '=' in content:
+                                load_dotenv(env_path, verbose=False, override=False)
+                    except Exception:
+                        # File exists but can't be parsed - skip it
+                        pass
+            finally:
+                # Restore original logging level
+                dotenv_logger.setLevel(original_level)
+        except Exception:
+            # Silently ignore dotenv errors
+            pass
         
         # MT5 credentials from environment
         if 'MT5_LOGIN' in os.environ:
-            self.config.setdefault('mt5', {})['login'] = int(os.environ['MT5_LOGIN'])
+            try:
+                self.config.setdefault('mt5', {})['login'] = int(os.environ['MT5_LOGIN'])
+            except (ValueError, TypeError):
+                pass
         if 'MT5_PASSWORD' in os.environ:
             self.config.setdefault('mt5', {})['password'] = os.environ['MT5_PASSWORD']
         if 'MT5_SERVER' in os.environ:
