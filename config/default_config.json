@@ -1,0 +1,50 @@
+{
+  "mt5": {
+    "login": null,
+    "password": null,
+    "server": null,
+    "path": null,
+    "timeout": 60000
+  },
+  "trading": {
+    "symbols": ["EURUSD"],
+    "timeframe": "M15",
+    "magic_number": 123456
+  },
+  "strategy": {
+    "name": "ma_crossover",
+    "config_file": "config/strategies/ma_crossover.json"
+  },
+  "risk": {
+    "position_sizing": {
+      "method": "fixed_fraction",
+      "value": 0.02
+    },
+    "max_daily_loss_percent": 5.0,
+    "max_daily_drawdown_percent": 10.0,
+    "max_consecutive_losses": 5,
+    "max_exposure_per_symbol_percent": 30.0,
+    "default_stop_loss_percent": 1.0,
+    "default_take_profit_percent": 2.0
+  },
+  "backtest": {
+    "start_date": "2023-01-01",
+    "end_date": "2023-12-31",
+    "initial_capital": 10000,
+    "spread_pips": 2,
+    "commission_per_lot": 0.0,
+    "slippage_pips": 1
+  },
+  "logging": {
+    "level": "INFO",
+    "log_dir": "logs",
+    "trade_log_file": "trades.csv",
+    "metrics_log_file": "metrics.json"
+  },
+  "dashboard": {
+    "host": "0.0.0.0",
+    "port": 8050,
+    "update_interval_ms": 1000
+  }
+}
+

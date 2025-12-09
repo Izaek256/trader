@@ -1,0 +1,8 @@
+{
+  "name": "Moving Average Crossover",
+  "fast_period": 10,
+  "slow_period": 50,
+  "ma_type": "SMA",
+  "signal_threshold": 0.0001
+}
+
