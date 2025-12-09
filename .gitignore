@@ -1,48 +1,48 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-env/
-venv/
-ENV/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
 
 # Logs
 logs/
 *.log
+
+# Environment variables
+.env
+.env.local
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
-
-# Environment
-.env
-.env.local
 
 # OS
 .DS_Store
 Thumbs.db
 
-# MT5
-*.hst
-*.fxt
-
+# Project specific
+*.pid
+*.sock
+*.txt
+*.csv
+*.json
+*.yaml
+*.yml
+*.html
+*.css
+*.js
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.pdf
+*.md
+*.bat
