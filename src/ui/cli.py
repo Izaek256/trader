@@ -17,6 +17,11 @@ from src.strategy.statistical_arbitrage import StatisticalArbitrageStrategy
 from src.strategy.vix_volatility_index import VIXVolatilityIndexStrategy
 from src.strategy.ml_entry_filter import MLEntryFilterStrategy
 from src.strategy.momentum_oscillator_convergence import MomentumOscillatorConvergenceStrategy
+from src.strategy.trend_pullback_rr import TrendPullbackRRStrategy
+from src.strategy.balanced_trend_following import BalancedTrendFollowingStrategy
+from src.strategy.supply_demand import SupplyDemandStrategy
+from src.strategy.ict_smc_enhanced import ICTSMCEnhancedStrategy
+from src.strategy.confluence_master import ConfluenceMasterStrategy
 from src.core.bot import TradingBot
 from src.backtest.engine import BacktestEngine
 
@@ -43,6 +48,11 @@ def _create_strategy(strategy_name: str, strategy_config: dict):
         'vix_volatility_index': VIXVolatilityIndexStrategy,
         'ml_entry_filter': MLEntryFilterStrategy,
         'momentum_oscillator_convergence': MomentumOscillatorConvergenceStrategy,
+        'trend_pullback_rr': TrendPullbackRRStrategy,
+        'balanced_trend_following': BalancedTrendFollowingStrategy,
+        'supply_demand': SupplyDemandStrategy,
+        'ict_smc_enhanced': ICTSMCEnhancedStrategy,
+        'confluence_master': ConfluenceMasterStrategy,
     }
     
     strategy_class = strategy_map.get(strategy_name)
@@ -176,7 +186,9 @@ def backtest(config: str, start_date: str, end_date: str, symbol: str):
             click.echo(f"Unknown strategy: {strategy_name}", err=True)
             click.echo("Available strategies: ma_crossover, mean_reversion_volatility, multi_timeframe_trend, "
                        "breakout_volatility_expansion, liquidity_sweep_smc, statistical_arbitrage, "
-                       "vix_volatility_index, ml_entry_filter, momentum_oscillator_convergence")
+                       "vix_volatility_index, ml_entry_filter, momentum_oscillator_convergence, "
+                       "trend_pullback_rr, balanced_trend_following, supply_demand, ict_smc_enhanced, "
+                       "confluence_master")
             sys.exit(1)
         
         # Parse dates

@@ -210,27 +210,46 @@ class BacktestEngine:
             return
         
         pos = self.open_positions[symbol]
-        current_price = bar_event.close
+        bar_high = bar_event.high
+        bar_low = bar_event.low
+        bar_close = bar_event.close
         
-        # Check stop loss
-        if pos['type'] == 'BUY' and current_price <= pos['sl']:
-            self._close_position(symbol, bar_event, exit_reason='SL')
-        elif pos['type'] == 'SELL' and current_price >= pos['sl']:
-            self._close_position(symbol, bar_event, exit_reason='SL')
-        
-        # Check take profit
-        elif pos['type'] == 'BUY' and current_price >= pos['tp']:
-            self._close_position(symbol, bar_event, exit_reason='TP')
-        elif pos['type'] == 'SELL' and current_price <= pos['tp']:
-            self._close_position(symbol, bar_event, exit_reason='TP')
+        # Check stop loss first (priority)
+        if pos['type'] == 'BUY':
+            # For long positions: SL hit if low touches or goes below SL
+            if bar_low <= pos['sl']:
+                # Use SL price (or low, whichever is higher to avoid overshoot)
+                exit_price = max(pos['sl'], bar_low)
+                self._close_position(symbol, bar_event, exit_reason='SL', exit_price=exit_price)
+                return
+            # TP hit if high touches or goes above TP
+            elif bar_high >= pos['tp']:
+                # Use TP price (or high, whichever is lower)
+                exit_price = min(pos['tp'], bar_high)
+                self._close_position(symbol, bar_event, exit_reason='TP', exit_price=exit_price)
+                return
+        else:  # SELL
+            # For short positions: SL hit if high touches or goes above SL
+            if bar_high >= pos['sl']:
+                # Use SL price (or high, whichever is lower)
+                exit_price = min(pos['sl'], bar_high)
+                self._close_position(symbol, bar_event, exit_reason='SL', exit_price=exit_price)
+                return
+            # TP hit if low touches or goes below TP
+            elif bar_low <= pos['tp']:
+                # Use TP price (or low, whichever is higher)
+                exit_price = max(pos['tp'], bar_low)
+                self._close_position(symbol, bar_event, exit_reason='TP', exit_price=exit_price)
+                return
     
-    def _close_position(self, symbol: str, bar_event: BarEvent, exit_reason: str = 'Signal') -> None:
+    def _close_position(self, symbol: str, bar_event: BarEvent, exit_reason: str = 'Signal', exit_price: Optional[float] = None) -> None:
         """Close an open position"""
         if symbol not in self.open_positions:
             return
         
         pos = self.open_positions.pop(symbol)
-        exit_price = bar_event.close
+        if exit_price is None:
+            exit_price = bar_event.close
         
         # Simulate exit with costs
         final_exit_price, exit_cost = self.simulator.simulate_exit(

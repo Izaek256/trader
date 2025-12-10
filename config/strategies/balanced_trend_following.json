@@ -1,0 +1,25 @@
+{
+  "name": "Balanced Trend Following",
+  "fast_ema": 21,
+  "slow_ema": 50,
+  "trend_ema": 100,
+  "adx_period": 14,
+  "adx_min": 20.0,
+  "adx_max": 50.0,
+  "rsi_period": 14,
+  "rsi_oversold": 35,
+  "rsi_overbought": 65,
+  "rsi_recovery": 3,
+  "macd_fast": 12,
+  "macd_slow": 26,
+  "macd_signal": 9,
+  "atr_period": 14,
+  "atr_sl_multiplier": 1.2,
+  "atr_tp_multiplier": 2.5,
+  "volume_period": 20,
+  "volume_pullback_threshold": 0.95,
+  "min_rr": 2.0,
+  "target_rr": 2.5,
+  "swing_lookback": 10
+}
+

@@ -1,0 +1,18 @@
+{
+  "zone_lookback": 100,
+  "impulse_min_bars": 5,
+  "impulse_min_move": 0.005,
+  "zone_base_bars": 3,
+  "min_zone_strength": 0.003,
+  "max_zone_tests": 3,
+  "zone_age_max_bars": 200,
+  "rejection_wick_ratio": 0.6,
+  "rejection_body_ratio": 0.3,
+  "atr_period": 14,
+  "atr_sl_multiplier": 1.5,
+  "volume_period": 20,
+  "volume_approach_threshold": 0.9,
+  "volume_rejection_threshold": 1.1,
+  "risk_reward_ratio": 2.5
+}
+

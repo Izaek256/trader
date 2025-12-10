@@ -5,7 +5,20 @@ A comprehensive Python-based automated trading bot for MetaTrader 5 with modular
 ## Features
 
 - **MT5 Platform Integration**: Direct connection to MetaTrader 5 terminal via official Python API
-- **Modular Strategy System**: Pluggable strategy modules (starting with Moving Average Crossover)
+- **Modular Strategy System**: 12+ pluggable strategy modules including:
+  - **Confluence Master**: Combines all strategies for high-probability trades
+  - **ICT/SMC Enhanced**: Smart Money Concepts with Fair Value Gaps, Order Blocks, Market Structure
+  - **Supply and Demand**: Zone-based trading with impulse moves
+  - **Liquidity Sweep SMC**: Stop hunt and reversal trading
+  - **Balanced Trend Following**: EMA-based trend continuation
+  - **Multi-Timeframe Trend**: Higher timeframe trend alignment
+  - **Momentum Oscillator Convergence**: RSI, Stochastic, MACD, Williams %R alignment
+  - **Breakout Volatility Expansion**: Volatility compression/expansion patterns
+  - **MA Crossover**: Classic moving average crossover
+  - **Mean Reversion Volatility**: Bollinger Bands mean reversion
+  - **Statistical Arbitrage**: Spread trading and cointegration
+  - **VIX Volatility Index**: Volatility index specific strategies
+  - **Trend Pullback RR**: High risk-reward pullback trading
 - **Risk Management**: Position sizing, daily loss limits, kill switch, and exposure controls
 - **Performance Tracking**: Real-time metrics (Win Rate, ROI, Drawdown) with file-based logging
 - **Backtesting Engine**: Historical strategy validation with realistic transaction costs
@@ -48,6 +61,26 @@ Edit `config/default_config.json` to set:
 - Strategy parameters
 - Risk management rules
 - Trading symbols
+
+### Available Strategies
+
+The bot includes multiple trading strategies, each with its own configuration file in `config/strategies/`:
+
+1. **confluence_master** - Master strategy combining all others (recommended)
+2. **ict_smc_enhanced** - Enhanced ICT/SMC with FVG, Order Blocks, Market Structure
+3. **supply_demand** - Supply and Demand zone trading
+4. **liquidity_sweep_smc** - Liquidity sweep and reversal
+5. **balanced_trend_following** - Balanced trend continuation
+6. **multi_timeframe_trend** - Multi-timeframe alignment
+7. **momentum_oscillator_convergence** - Multiple oscillator alignment
+8. **breakout_volatility_expansion** - Volatility breakout trading
+9. **ma_crossover** - Moving average crossover
+10. **mean_reversion_volatility** - Mean reversion with volatility
+11. **statistical_arbitrage** - Statistical arbitrage
+12. **vix_volatility_index** - VIX-specific strategies
+13. **trend_pullback_rr** - High R:R pullback trading
+
+To use a strategy, set the `strategy.name` in `config/default_config.json` and point to the corresponding config file.
 
 ## Usage
 

@@ -1,0 +1,99 @@
+{
+  "min_confluence": 3,
+  "min_signal_strength": 0.6,
+  "signal_history_window": 5,
+  "strategy_weights": {
+    "ICTSMCEnhanced": 1.5,
+    "SupplyDemand": 1.5,
+    "LiquiditySweepSMC": 1.3,
+    "BalancedTrendFollowing": 1.2,
+    "MultiTimeframeTrend": 1.2,
+    "MomentumOscillatorConvergence": 1.1,
+    "BreakoutVolatilityExpansion": 1.0,
+    "TrendPullbackRR": 1.0,
+    "MACrossover": 0.8,
+    "MeanReversionVolatility": 0.8,
+    "StatisticalArbitrage": 0.7,
+    "VIXVolatilityIndex": 0.7
+  },
+  "base_config": {},
+  "strategy_configs": {
+    "balanced_trend_following": {
+      "fast_ema": 21,
+      "slow_ema": 50,
+      "trend_ema": 100,
+      "adx_period": 14,
+      "adx_min": 20.0,
+      "rsi_period": 14,
+      "atr_period": 14,
+      "risk_reward_ratio": 2.5
+    },
+    "multi_timeframe_trend": {
+      "htf_multiplier": 4,
+      "fast_ema": 21,
+      "slow_ema": 50,
+      "adx_threshold": 25.0,
+      "rsi_period": 14,
+      "atr_period": 14,
+      "risk_reward_ratio": 2.5
+    },
+    "momentum_oscillator_convergence": {
+      "rsi_period": 14,
+      "stoch_k_period": 14,
+      "macd_fast": 12,
+      "macd_slow": 26,
+      "min_oscillators_agree": 3,
+      "risk_reward_ratio": 2.5
+    },
+    "breakout_volatility_expansion": {
+      "consolidation_period": 20,
+      "atr_period": 14,
+      "volume_breakout_threshold": 1.5,
+      "risk_reward_ratio": 2.0
+    },
+    "liquidity_sweep_smc": {
+      "swing_lookback": 20,
+      "sweep_threshold": 0.001,
+      "atr_period": 14,
+      "risk_reward_ratio": 3.0
+    },
+    "ict_smc_enhanced": {
+      "swing_lookback": 20,
+      "sweep_threshold": 0.001,
+      "fvg_min_size": 0.001,
+      "atr_period": 14,
+      "risk_reward_ratio": 3.0
+    },
+    "supply_demand": {
+      "zone_lookback": 100,
+      "impulse_min_move": 0.005,
+      "min_zone_strength": 0.003,
+      "atr_period": 14,
+      "risk_reward_ratio": 2.5
+    },
+    "ma_crossover": {
+      "fast_period": 10,
+      "slow_period": 50,
+      "ma_type": "SMA"
+    },
+    "mean_reversion_volatility": {
+      "bb_period": 20,
+      "rsi_period": 14,
+      "atr_period": 14
+    },
+    "statistical_arbitrage": {
+      "lookback_period": 20,
+      "z_score_threshold": 2.0
+    },
+    "vix_volatility_index": {
+      "volatility_period": 20,
+      "volatility_threshold": 1.2
+    },
+    "trend_pullback_rr": {
+      "ema_period": 50,
+      "atr_period": 14,
+      "risk_reward_ratio": 2.5
+    }
+  }
+}
+

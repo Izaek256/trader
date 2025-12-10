@@ -1,0 +1,19 @@
+{
+  "swing_lookback": 20,
+  "structure_shift_bars": 3,
+  "sweep_threshold": 0.001,
+  "sweep_reversal_bars": 3,
+  "order_block_lookback": 20,
+  "order_block_min_size": 0.003,
+  "fvg_lookback": 50,
+  "fvg_min_size": 0.001,
+  "breaker_lookback": 100,
+  "atr_period": 14,
+  "atr_sl_multiplier": 2.0,
+  "volume_period": 20,
+  "volume_reversal_threshold": 1.2,
+  "adx_period": 14,
+  "adx_min": 15.0,
+  "risk_reward_ratio": 3.0
+}
+

@@ -1,0 +1,24 @@
+{
+  "name": "High R:R Trend Pullback",
+  "fast_ema": 21,
+  "slow_ema": 50,
+  "trend_ema": 200,
+  "adx_period": 14,
+  "adx_min": 25.0,
+  "adx_exit": 20.0,
+  "rsi_period": 14,
+  "rsi_oversold": 40,
+  "rsi_overbought": 60,
+  "atr_period": 14,
+  "atr_sl_multiplier": 1.0,
+  "atr_tp_multiplier": 4.0,
+  "atr_min": 0.0005,
+  "atr_max": 0.005,
+  "volume_period": 20,
+  "volume_pullback_threshold": 0.9,
+  "volume_continuation_threshold": 1.1,
+  "min_rr": 3.0,
+  "target_rr": 4.0,
+  "swing_lookback": 10
+}
+

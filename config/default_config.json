@@ -12,8 +12,8 @@
     "magic_number": 123456
   },
   "strategy": {
-    "name": "momentum_oscillator_convergence",
-    "config_file": "config/strategies/momentum_oscillator_convergence.json"
+    "name": "balanced_trend_following",
+    "config_file": "config/strategies/balanced_trend_following.json"
   },
   "risk": {
     "position_sizing": {
